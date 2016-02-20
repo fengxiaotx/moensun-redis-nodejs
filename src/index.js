@@ -24,6 +24,12 @@ MSRedis.prototype.createClient = function(options){
     }
 }
 
+
+MSRedis.prototype.end = function(){
+    var me = this;
+    me.redisClient.end();
+}
+
 MSRedis.prototype.select = function(index){
     this.index = index;
     this.redisClient.select(index);
