@@ -31,16 +31,62 @@ MSRedis.prototype.select = function(index){
 
 MSRedis.prototype.set = function(key,value,seconds){
     var me = this;
-    this.redisClient.set(key,value,function(error,res){
-        me.redisClient.expire(key,seconds);
+    me.redisClient.set(key,value,function(error,res){
+        if(error){
+            throw error;
+        }else {
+            if(seconds){
+                me.redisClient.expire(key,seconds);
+            }
+        }
     });
 
+}
+
+
+MSRedis.prototype.hset = function(key,hash,value,seconds){
+    var me = this;
+    me.redisClient.hset(key,hash,value,function(error,res){
+        if(error){
+            throw error;
+        }else {
+            if(seconds){
+                me.redisClient.expire(key,seconds);
+            }
+        }
+    });
+}
+
+MSRedis.prototype.hmset = function(data,seconds){
+    var me = this;
+    me.redisClient.hmset(data,function(error,res){
+        if(error){
+            throw error;
+        }else {
+            if(seconds){
+                me.redisClient.expire(data[0],seconds);
+            }
+        }
+    });
 }
 
 MSRedis.prototype.get = function(key){
     var me = this;
     return new Promise(function(resolve, reject){
         me.redisClient.get(key,function(error,res){
+            if(error){
+                reject(error);
+            }else {
+                resolve(res);
+            }
+        });
+    });
+}
+
+MSRedis.prototype.hgetall = function(key){
+    var me = this;
+    return new Promise(function(resolve, reject){
+        me.redisClient.hgetall(key,function(error,res){
             if(error){
                 reject(error);
             }else {
