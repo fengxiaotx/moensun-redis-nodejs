@@ -1,0 +1,23 @@
+{
+  "name": "moensun-redis",
+  "version": "1.0.0",
+  "description": "moensun-redis-nodejs",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengxiaotx/moensun-redis-nodejs.git"
+  },
+  "author": "Bane.Shi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fengxiaotx/moensun-redis-nodejs/issues"
+  },
+  "homepage": "https://github.com/fengxiaotx/moensun-redis-nodejs#readme",
+  "dependencies": {
+    "bluebird": "^3.3.1",
+    "redis": "^2.4.2"
+  }
+}
