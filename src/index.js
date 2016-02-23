@@ -37,14 +37,17 @@ MSRedis.prototype.select = function(index){
 
 MSRedis.prototype.set = function(key,value,seconds){
     var me = this;
-    me.redisClient.set(key,value,function(error,res){
-        if(error){
-            throw error;
-        }else {
-            if(seconds){
-                me.redisClient.expire(key,seconds);
+    return new Promise(function(resolve, reject){
+        me.redisClient.set(key,value,function(error,res){
+            if(error){
+                reject(error);
+            }else {
+                if(seconds){
+                    me.redisClient.expire(key,seconds);
+                    resolve(res);
+                }
             }
-        }
+        });
     });
 
 }
@@ -52,27 +55,33 @@ MSRedis.prototype.set = function(key,value,seconds){
 
 MSRedis.prototype.hset = function(key,hash,value,seconds){
     var me = this;
-    me.redisClient.hset(key,hash,value,function(error,res){
-        if(error){
-            throw error;
-        }else {
-            if(seconds){
-                me.redisClient.expire(key,seconds);
+    return new Promise(function(resolve, reject){
+        me.redisClient.hset(key,hash,value,function(error,res){
+            if(error){
+                reject(error);
+            }else {
+                if(seconds){
+                    me.redisClient.expire(key,seconds);
+                    resolve(res);
+                }
             }
-        }
+        });
     });
 }
 
 MSRedis.prototype.hmset = function(data,seconds){
     var me = this;
-    me.redisClient.hmset(data,function(error,res){
-        if(error){
-            throw error;
-        }else {
-            if(seconds){
-                me.redisClient.expire(data[0],seconds);
+    return new Promise(function(resolve, reject){
+        me.redisClient.hmset(data,function(error,res){
+            if(error){
+                reject(error);
+            }else {
+                if(seconds){
+                    me.redisClient.expire(data[0],seconds);
+                    resolve(res);
+                }
             }
-        }
+        });
     });
 }
 
