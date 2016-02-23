@@ -44,8 +44,8 @@ MSRedis.prototype.set = function(key,value,seconds){
             }else {
                 if(seconds){
                     me.redisClient.expire(key,seconds);
-                    resolve(res);
                 }
+                resolve(res);
             }
         });
     });
@@ -62,8 +62,8 @@ MSRedis.prototype.hset = function(key,hash,value,seconds){
             }else {
                 if(seconds){
                     me.redisClient.expire(key,seconds);
-                    resolve(res);
                 }
+                resolve(res);
             }
         });
     });
@@ -78,8 +78,8 @@ MSRedis.prototype.hmset = function(data,seconds){
             }else {
                 if(seconds){
                     me.redisClient.expire(data[0],seconds);
-                    resolve(res);
                 }
+                resolve(res);
             }
         });
     });
