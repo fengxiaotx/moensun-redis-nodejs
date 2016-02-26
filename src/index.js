@@ -111,4 +111,9 @@ MSRedis.prototype.hgetall = function(key){
     });
 }
 
+MSRedis.prototype.del = function (key){
+    var me = this;
+    me.redisClient.del(key);
+}
+
 module.exports = MSRedis;
